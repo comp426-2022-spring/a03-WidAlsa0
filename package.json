@@ -4,9 +4,9 @@
   "description": "\"Build an API to flip some coins\"",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "minimist": "^1.2.5"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "\"node server.js --port=5555\"",
     "start": "node server.js"
