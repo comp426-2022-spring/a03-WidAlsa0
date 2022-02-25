@@ -50,14 +50,16 @@ app.get('/app/flips/:number', (req, res) => {
     res.status(200).json({'flips': flips})
 })
 
-app.get('/app/flipss/call/heads', (req, res) => {
-    const flips = flipACoin('heads')
-    res.status(200).json({'flips': flips})
+app.get('/app/flip/call/heads', (req, res) => {
+    var input = "heads"
+    const flips = flipACoin(input)
+    res.status(200).json(flips)
 })
 
-app.get('/app/flipss/call/tails', (req, res) => {
-    const flips = flipACoin('tails')
-    res.status(200).json({'flips': flips})
+app.get('/app/flip/call/tails', (req, res) => {
+    var input = "tails"
+    const flips = flipACoin(input)
+    res.status(200).json(flips)
 })
 
 app.use(function(req, res) {
