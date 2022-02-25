@@ -11,6 +11,25 @@ function coinFlip() {
     return (Math.floor(Math.random() * 2) == 0) ? 'heads' : 'tails';
 }
 
+function coinFlips(flips) {
+    const array = [];
+    for (let i =0; i<flips; i++) {
+      array[i] = coinFlip();
+    }
+    return array
+}
+
+function flipACoin(call) {
+    let flip = coinFlip()
+    let outcome = ''
+    if (flip == call) {
+      outcome = 'win'
+    } else {
+      outcome = 'lose'
+    }
+    return { 'call': call, 'flip': flip, 'result': outcome }
+}
+
 app.get('./app',(req, res) => {
     res.status(200).end('OK')
     res.type('text/plain')
@@ -24,6 +43,21 @@ app.get('/app/echo/:number', (req, res) => {
 app.get('/app/flip', (req, res) => {
     var flip = coinFlip()
     res.status(200).json({'flip': flip})
+})
+
+app.get('/app/flips/:number', (req, res) => {
+    const flips = coinFlips(req.params.number)
+    res.status(200).json({'flips': flips})
+})
+
+app.get('/app/flipss/call/heads', (req, res) => {
+    const flips = flipACoin('heads')
+    res.status(200).json({'flips': flips})
+})
+
+app.get('/app/flipss/call/tails', (req, res) => {
+    const flips = flipACoin('tails')
+    res.status(200).json({'flips': flips})
 })
 
 app.use(function(req, res) {
