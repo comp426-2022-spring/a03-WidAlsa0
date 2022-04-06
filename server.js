@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-var port = 5000
+var port = 5000 || process.env.PORT
 
 const server = app.listen(port, () => {
     console.log('App is running on port %port%.'.replace('%port%',port))
@@ -30,7 +30,7 @@ function flipACoin(call) {
     return { 'call': call, 'flip': flip, 'result': outcome }
 }
 
-app.get('./app',(req, res) => {
+app.get('/app',(req, res) => {
     res.status(200).end('OK')
     res.type('text/plain')
     res.end(res.statusCode+''+res.statusMessage)
