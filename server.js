@@ -1,7 +1,9 @@
 const express = require('express')
+const args = require("minimist")(process.argv.slice(2))
+args["port"]
 const app = express()
 
-var port = 5000 || process.env.PORT
+var port = 5000 || process.env.PORT || args.port
 
 const server = app.listen(port, () => {
     console.log('App is running on port %port%.'.replace('%port%',port))
@@ -32,12 +34,12 @@ function flipACoin(call) {
 
 app.get('/app',(req, res) => {
     res.status(200).end('OK')
-    res.type('text/plain')
-    res.end(res.statusCode+''+res.statusMessage)
+    //res.type('text/plain')
+    res.end(res.statusCode +''+ res.statusMessage)
 })
 
 app.get('/app/echo/:number', (req, res) => {
-    res.status(200).json({'message': req.params.number })
+    res.status(200).json({  'message': req.params.number })
 })
 
 app.get('/app/flip', (req, res) => {
