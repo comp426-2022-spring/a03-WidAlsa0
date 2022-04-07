@@ -32,6 +32,26 @@ function flipACoin(call) {
     return { 'call': call, 'flip': flip, 'result': outcome }
 }
 
+function countFlips(array) {
+    let heads = 0;
+    let tails = 0;
+    for (let i =0; i<array.length; i++) {
+      if (array[i].charAt[0] == 't') {
+          tails = tails + 1
+      } else {
+        heads = heads + 1
+      }
+    }
+  
+    if (heads == 0) {
+      return { tails: tails}
+    } else if (tails == 0) {
+      return { heads: heads}
+    }
+  
+    return { 'heads': heads, 'tails': tails }
+  }
+
 app.get('/app',(req, res) => {
     res.status(200).end('OK')
     res.end(res.statusCode +''+ res.statusMessage)
@@ -48,7 +68,7 @@ app.get('/app/flip', (req, res) => {
 
 app.get('/app/flips/:number', (req, res) => {
     const flips = coinFlips(req.params.number)
-    const count = coinFlips(flips)
+    const count = countFlips(req.params.number)
     res.status(200).json({'flips': flips})
     res.status(200).json({'summary' : count})
 })
