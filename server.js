@@ -34,7 +34,6 @@ function flipACoin(call) {
 
 app.get('/app',(req, res) => {
     res.status(200).end('OK')
-    //res.type('text/plain')
     res.end(res.statusCode +''+ res.statusMessage)
 })
 
@@ -66,5 +65,4 @@ app.get('/app/flip/call/tails', (req, res) => {
 
 app.use(function(req, res) {
     res.status(404).send("Endpoint does not exist")
-    res.type("text/plain")
 })
