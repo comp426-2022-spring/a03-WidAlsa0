@@ -33,23 +33,23 @@ function flipACoin(call) {
 }
 
 function countFlips(array) {
-    var returnVar = {};
-    returnVar = {heads: 0, tails: 0}
+    let heads = 0;
+    let tails = 0;
     for (let i =0; i<array.length; i++) {
       if (array[i].charAt[0] == 't') {
-          returnVar.tails += 1;
+          tails = tails + 1
       } else {
-        returnVar.heads += 1;
+        heads = heads + 1
       }
     }
-  
+
     if (heads == 0) {
-      delete returnVar['heads']
+      return { tails: tails}
     } else if (tails == 0) {
-      delete returnVar['tails']
+      return { heads: heads}
     }
-  
-    return returnVar
+
+    return { 'heads': heads, 'tails': tails }
   }
 
 app.get('/app',(req, res) => {
